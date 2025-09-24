@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: API приложения "Perfect wed"
+  description: |
+    __API приложения__ "_Perfect wed_"
+    
+    Для партнёров
+  version: 1.0.0
+servers:
+  - url: https://woogle.ai/api/v100/
+paths: 
+  /Events:
+    get:  
+      summary: Получить нформацию о всех мероприятиях
+      description: Информация о всех мероприятиях
+      tags:
+        - Мероприятия
+      parameters:
+        - name: Active
+          in: query
+          schema:
+            type: boolean
+            description: показывать активные и неактивные мероприятия
+      responses:
+       "200":
+          description: Ок 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Event: 
+                     title: меропритие
+                     description: активное мероприятие
+                     type: string
+                     example: Свадьба "Каразулины"
+                    name: 
+                     title: название мероприятия
+                     description: название мероприятия
+                     type: array
+                     items:
+                      type: string
+                      example: Каразулины
+                    Date: 
+                     title: дата
+                     description: дата мероприятия
+                     type: string
+                     format: date
+                     example: 17.09.2025
+  /Event:
+   delete:
+       summary: Удалить мероприятие
+       tags:
+        - Мероприятия
+       parameters:
+        - name: idEvent
+          in: query 
+          schema:
+            type: integer
+            example: 97345
+       responses:
+        "200":
+          description: Ок 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name: 
+                     title: название мероприятия
+                     description: название мероприятия
+                     type: string
+                     example: Свадьба "Черновых"
+                    Date: 
+                     title: дата
+                     description: дата мероприятия
+                     type: string
+                     format: date
+                     example: 17.09.2025
+                    status: 
+                     title: статус мероприятия
+                     description: статус мероприятия
+                     type: integer
+                     example: Delete
